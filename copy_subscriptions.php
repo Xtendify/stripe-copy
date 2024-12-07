@@ -124,8 +124,7 @@ function copy_single_subscription($source_api_key, $target_api_key, $source_subs
 
     // Skip if subscription is scheduled to be cancelled
     if ($source_subscription->cancel_at || $source_subscription->cancel_at_period_end || !empty($source_subscription->pause_collection) || $source_subscription->status !== 'active') {
-        echo "Skipping subscription {$source_subscription_id} as it is either not active or scheduled to be cancelled\n";
-        return;
+        throw new Exception("Skipping subscription {$source_subscription_id} as it is either not active or scheduled to be cancelled");
     }
 
     // Switch to target API key
@@ -179,7 +178,7 @@ function copy_single_subscription($source_api_key, $target_api_key, $source_subs
             $source_subscription,
             $existing_subscription->id
         );
-        return;
+        return $existing_subscription;
     }
 
     // Create subscription in target account
