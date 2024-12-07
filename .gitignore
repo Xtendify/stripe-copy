@@ -1,1 +1,19 @@
-vendor
+# Environment files
+.env
+
+# Composer
+/vendor/
+
+# PHP
+*.log
+.php_cs.cache
+
+# IDE
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# OS
+.DS_Store
+Thumbs.db
